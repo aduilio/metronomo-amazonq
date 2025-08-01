@@ -24,21 +24,36 @@ function updateDrawButton() {
 }
 
 function drawPlayers() {
+    // Reset available players if less than 2 remain
     if (availablePlayers.length < 2) {
         availablePlayers = [...players];
     }
     
-    const asker = availablePlayers.splice(Math.floor(Math.random() * availablePlayers.length), 1)[0];
-    const responder = availablePlayers.splice(Math.floor(Math.random() * availablePlayers.length), 1)[0];
+    // Get random asker
+    const askerIndex = Math.floor(Math.random() * availablePlayers.length);
+    const asker = availablePlayers.splice(askerIndex, 1)[0];
     
+    // Get random responder from remaining players
+    const responderIndex = Math.floor(Math.random() * availablePlayers.length);
+    const responder = availablePlayers.splice(responderIndex, 1)[0];
+    
+    // Update display
     const askerBox = document.getElementById('asker');
     const responderBox = document.getElementById('responder');
     
+    // Clear previous classes
+    askerBox.classList.remove('show');
+    responderBox.classList.remove('show');
+    
+    // Set new content
     askerBox.textContent = asker;
     responderBox.textContent = responder;
     
-    askerBox.classList.add('show');
-    responderBox.classList.add('show');
+    // Add show class with slight delay for animation
+    setTimeout(() => {
+        askerBox.classList.add('show');
+        responderBox.classList.add('show');
+    }, 50);
 }
 
 document.getElementById('playerName').addEventListener('keypress', function(e) {
