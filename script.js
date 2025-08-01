@@ -31,9 +31,14 @@ function drawPlayers() {
     const asker = availablePlayers.splice(Math.floor(Math.random() * availablePlayers.length), 1)[0];
     const responder = availablePlayers.splice(Math.floor(Math.random() * availablePlayers.length), 1)[0];
     
-    const result = document.getElementById('result');
-    result.innerHTML = `<strong>${asker}</strong> pergunta para <strong>${responder}</strong>`;
-    result.classList.add('show');
+    const askerBox = document.getElementById('asker');
+    const responderBox = document.getElementById('responder');
+    
+    askerBox.textContent = asker;
+    responderBox.textContent = responder;
+    
+    askerBox.classList.add('show');
+    responderBox.classList.add('show');
 }
 
 document.getElementById('playerName').addEventListener('keypress', function(e) {
